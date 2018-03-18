@@ -24,6 +24,24 @@ class App extends Component {
           artist: 'Crystal Skies',
           album: 'Crystal Skies'
         }
+      ],
+      playlistName: 'TrackDaggery',
+      playlistTracks: [
+        {
+          name: 'Well That Looks Weird',
+          artist: 'BlagDaggery',
+          album: 'The Exposition of Something Strage'
+        },
+        {
+          name: 'Good Morning',
+          artist: 'One Lonely Pancake',
+          album: 'Short Stack'
+        },
+        {
+          name: 'Flying Kites',
+          artist: 'Crystal Skies',
+          album: 'Crystal Skies'
+        }
       ]
     };
   }
@@ -36,7 +54,7 @@ class App extends Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} />
-            <Playlist />
+            <Playlist playlistName={this.state.playlistName} playListTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div>
