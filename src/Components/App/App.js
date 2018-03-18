@@ -4,16 +4,27 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: {
-        name: 'Come Together',
-        artist: 'The Beatles',
-        album: 'Abbey Road'
+      searchResults: [
+      {
+        name: 'Well That Looks Weird',
+        artist: 'BlagDaggery',
+        album: 'The Exposition of Something Strage'
+      },
+      {
+        name: 'Good Morning',
+        artist: 'One Lonely Pancake',
+        album: 'Short Stack'
+      },
+      {
+        name: 'Flying Kites',
+        artist: 'Crystal Skies',
+        album: 'Crystal Skies'
       }
-    }
+    ]};
   }
 
   render() {
