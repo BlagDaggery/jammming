@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './Track.css';
 
 class Track extends Component {
+  handleAddTrack() {
+    this.props.onAdd(this.props.track);
+  }
+
   renderAction() {
     if (this.props.isRemoval) {
       return '-';

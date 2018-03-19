@@ -10,16 +10,19 @@ class App extends Component {
     this.state = {
       searchResults: [
         {
+          id: 1,
           name: 'Well That Looks Weird',
           artist: 'BlagDaggery',
           album: 'The Exposition of Something Strage'
         },
         {
+          id: 2,
           name: 'Good Morning',
           artist: 'One Lonely Pancake',
           album: 'Short Stack'
         },
         {
+          id: 3,
           name: 'Flying Kites',
           artist: 'Crystal Skies',
           album: 'Crystal Skies'
@@ -28,22 +31,32 @@ class App extends Component {
       playlistName: 'TrackDaggery',
       playlistTracks: [
         {
+          id: 1,
           name: 'Well That Looks Weird',
           artist: 'BlagDaggery',
           album: 'The Exposition of Something Strage'
         },
         {
+          id: 2,
           name: 'Good Morning',
           artist: 'One Lonely Pancake',
           album: 'Short Stack'
         },
         {
+          id: 3,
           name: 'Flying Kites',
           artist: 'Crystal Skies',
           album: 'Crystal Skies'
         }
       ]
     };
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  addTrack(track) {
+    if(!this.state.playlistTracks.contains(track.id)) {
+      this.setState({playlistTracks: this.state.playlistTracks.push(track)});
+    }
   }
 
   render() {
@@ -53,7 +66,7 @@ class App extends Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults onAdd={this.addTrack} searchResults={this.state.searchResults} />
             <Playlist playlistName={this.state.playlistName} playListTracks={this.state.playlistTracks} />
           </div>
         </div>
