@@ -7,7 +7,7 @@ class TrackList extends Component {
     return (
       <div className="TrackList">
         {this.props.tracks.map(track => {
-          return <Track onAdd={this.props.onAdd} track={track} />;
+          return <Track onRemove={this.props.onRemove} onAdd={this.props.onAdd} track={track} />;
         })}
       </div>
     );
