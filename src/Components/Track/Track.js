@@ -8,11 +8,11 @@ class Track extends Component {
     this.removeTrack = this.removeTrack.bind(this);
   }
 
-  addTrack() {
+  addTrack(e) {
     this.props.onAdd(this.props.track);
   }
 
-  removeTrack() {
+  removeTrack(e) {
     this.props.onRemove(this.props.track);
   }
 
@@ -30,7 +30,7 @@ class Track extends Component {
           <h3>{this.props.track.name}</h3>
           <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
-        {this.renderAction}
+        {this.renderAction()}
       </div>
     );
   }
