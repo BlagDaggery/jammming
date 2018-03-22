@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm: '',
       searchResults: [
         {
           id: 1,
@@ -21,13 +22,18 @@ class App extends Component {
           album: 'At Her Service'
         }
       ],
-      playlistName: 'TrackDaggery',
+      playlistName: '',
       playlistTracks: []
     };
+    this.search = this.search.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+  }
+
+  search(searchTerm) {
+    console.log(searchTerm);
   }
 
   addTrack(track) {
@@ -59,7 +65,7 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar />
+          <SearchBar searchTerm={this.state.searchTerm} onSearch={this.search()} />
           <div className="App-playlist">
             <SearchResults
               onAdd={this.addTrack}
