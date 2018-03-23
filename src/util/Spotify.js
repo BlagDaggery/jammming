@@ -5,6 +5,7 @@ var accessToken = '';
 var tokenInURL = window.location.href.match(/access_token=([^&]*)/);
 
 const Spotify = {
+
   getAccessToken() {
     if (accessToken) {
       return accessToken;
@@ -19,6 +20,7 @@ const Spotify = {
   },
 
   search(searchTerm) {
+    this.getAccessToken();
     return fetch(
       `https://api.spotify.com/v1/search?type=track&q=${searchTerm}`,
       {

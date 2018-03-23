@@ -9,7 +9,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',
       searchResults: [],
       playlistName: '',
       playlistTracks: []
@@ -44,7 +43,7 @@ class App extends Component {
   savePlaylist() {
     const trackURIs = [];
     this.state.playlistTracks.map(track => {
-      trackURIs.push(track.uri);
+      return trackURIs.push(track.uri);
     });
     return trackURIs;
   }
@@ -54,7 +53,7 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar searchTerm={this.state.searchTerm} onSearch={this.search} />
+          <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults
               onAdd={this.addTrack}
