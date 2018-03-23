@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 import './App.css';
 
 class App extends Component {
@@ -9,19 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      searchResults: [
-        {
-          id: 1,
-          name: 'Hello World',
-          artist: 'BlagDaggery',
-          album: 'The Exposition of Something Strange'
-        },{
-          id: 2,
-          name: 'London',
-          artist: 'The Big Bens',
-          album: 'At Her Service'
-        }
-      ],
+      searchResults: [],
       playlistName: '',
       playlistTracks: []
     };
@@ -33,7 +22,7 @@ class App extends Component {
   }
 
   search(searchTerm) {
-    console.log(searchTerm);
+    this.setState({searchResults: [Spotify.search(searchTerm)]});
   }
 
   addTrack(track) {
@@ -65,7 +54,7 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar searchTerm={this.state.searchTerm} onSearch={this.search()} />
+          <SearchBar searchTerm={this.state.searchTerm} onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults
               onAdd={this.addTrack}
