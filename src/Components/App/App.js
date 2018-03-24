@@ -21,12 +21,16 @@ class App extends Component {
   }
 
   search(searchTerm) {
-    this.setState({searchResults: [Spotify.search(searchTerm)]});
+    Spotify.search(searchTerm).then(results => {
+      this.setState({searchResults: results});
+    });
   }
 
   addTrack(track) {
     let tracks = this.state.playlistTracks;
-    tracks.push(track);
+    if (!tracks.includes(track)) {
+      tracks.push(track);
+    }
     this.setState({playlistTracks: tracks});
   }
 
