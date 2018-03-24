@@ -10,9 +10,9 @@ const Spotify = {
     if (accessToken) {
       return accessToken;
     } else if (tokenInURL) {
-      accessToken = tokenInURL;
+      accessToken = tokenInURL[1];
       let expiration = window.location.href.match(/expires_in=([^&]*)/);
-      window.setTimeout(() => accessToken = '', expiration * 1000);
+      window.setTimeout(() => accessToken = '', expiration[1] * 1000);
       window.history.pushState('Acess Token', null, '/');
     } else {
       window.location = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
@@ -24,13 +24,13 @@ const Spotify = {
     return fetch(
       `https://api.spotify.com/v1/search?type=track&q=${searchTerm}`,
       {
-        headers: {'Authorization': `Bearer ${accessToken}`}
+        headers: {Authorization: `Bearer ${accessToken}`}
       }
     ).then(response => {
       return response.json();
     }).then(jsonResponse => {
       if (jsonResponse.tracks) {
-        return jsonResponse.tracks.map(track => {
+        return jsonResponse.tracks.items.map(track => {
           return {
             id: track.id,
             name: track.name,
