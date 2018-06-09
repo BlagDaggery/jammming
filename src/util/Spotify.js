@@ -1,5 +1,6 @@
 const clientID = '810f92f9db924ed1aec2d57589caa38c';
-const redirectURI = 'https://blagdaggery.github.io/jammming/';
+//const redirectURI = 'https://blagdaggery.github.io/jammming/';
+const redirectURI = 'http://localhost:3000/';
 
 let accessToken;
 
@@ -44,18 +45,14 @@ const Spotify = {
       });
     });
   },
+
   savePlaylist(playlistName, trackURIs) {
     if(!playlistName || !trackURIs) {
       return;
     }
-
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
-
     let userID;
-
-
-
     return fetch(
       `https://api.spotify.com/v1/me`,
       {
