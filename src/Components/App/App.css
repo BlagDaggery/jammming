@@ -21,6 +21,14 @@ h1 .highlight {
   color: #6c41ec;
 }
 
+.subtitle {
+  background-color: #010c3f;
+  text-align: center;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 0 0 .5rem 0;
+}
+
 h2 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.55rem;

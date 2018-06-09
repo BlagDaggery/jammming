@@ -58,6 +58,7 @@ class App extends Component {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
+        <p className="subtitle">A Codecademy Project</p>
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
