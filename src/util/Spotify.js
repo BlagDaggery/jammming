@@ -46,39 +46,41 @@ const Spotify = {
     });
   },
 
-  savePlaylist(playlistName, trackURIs) {
-    if(!playlistName || !trackURIs) {
+  async savePlaylist(playlistName, trackURIs) {
+    if(!playlistName || !trackURIs.length) {
+      console.log("Error!");
       return;
-    }
-    const accessToken = Spotify.getAccessToken();
-    const headers = { Authorization: `Bearer ${accessToken}` };
-    let userID;
-    return fetch(
-      `https://api.spotify.com/v1/me`,
-      {
-        headers: headers
-      }
-    ).then(response => response.json()).then(jsonResponse => {
-      userID = jsonResponse.id;
+    } else {
+      const accessToken = Spotify.getAccessToken();
+      const headers = { Authorization: `Bearer ${accessToken}` };
+      let userID;
       return fetch(
-        `https://api.spotify.com/v1/users/${userID}/playlists`,
+        `https://api.spotify.com/v1/me`,
         {
-          headers: headers,
-          method: 'POST',
-          body: JSON.stringify({name: playlistName})
+          headers: headers
         }
       ).then(response => response.json()).then(jsonResponse => {
-        const playlistID = jsonResponse.id;
+        userID = jsonResponse.id;
         return fetch(
-          `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`,
+          `https://api.spotify.com/v1/users/${userID}/playlists`,
           {
             headers: headers,
             method: 'POST',
-            body: JSON.stringify({"uris": trackURIs})
+            body: JSON.stringify({name: playlistName})
           }
-        );
+        ).then(response => response.json()).then(jsonResponse => {
+          const playlistID = jsonResponse.id;
+          return fetch(
+            `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`,
+            {
+              headers: headers,
+              method: 'POST',
+              body: JSON.stringify({"uris": trackURIs})
+            }
+          );
+        });
       });
-    });
+    }
   } // Closes method
 }; // Closes Object
 
