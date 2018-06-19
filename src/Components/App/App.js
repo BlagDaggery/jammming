@@ -21,9 +21,14 @@ class App extends Component {
   }
 
   search(searchTerm) {
-    Spotify.search(searchTerm).then(results => {
-      this.setState({searchResults: results});
-    });
+    if (!searchTerm.length) {
+      console.log("You need a search term, yo!");
+      return;
+    } else {
+      Spotify.search(searchTerm).then(results => {
+        this.setState({searchResults: results});
+      });
+    }
   }
 
   addTrack(track) {
