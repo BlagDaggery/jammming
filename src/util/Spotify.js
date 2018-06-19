@@ -48,7 +48,12 @@ const Spotify = {
 
   async savePlaylist(playlistName, trackURIs) {
     if(!playlistName || !trackURIs.length) {
-      console.log("Error!");
+      if (!playlistName) {
+        console.log("No request made. Please give your playlist a name.");
+      }
+      if (!trackURIs.length) {
+        console.log("No request made. Please add tracks to your playlist.");
+      }
       return;
     } else {
       const accessToken = Spotify.getAccessToken();
