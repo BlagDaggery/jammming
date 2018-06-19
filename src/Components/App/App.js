@@ -22,7 +22,7 @@ class App extends Component {
 
   search(searchTerm) {
     if (!searchTerm.length) {
-      console.log("You need a search term, yo!");
+      console.log("No request made. No searchTerm.");
       return;
     } else {
       Spotify.search(searchTerm).then(results => {
