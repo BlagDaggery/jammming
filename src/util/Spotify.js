@@ -1,6 +1,5 @@
 const clientID = '810f92f9db924ed1aec2d57589caa38c';
-//const redirectURI = 'https://blagdaggery.github.io/jammming/';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'https://blagdaggery.github.io/jammming/';
 
 let accessToken;
 
