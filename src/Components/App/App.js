@@ -21,9 +21,14 @@ class App extends Component {
   }
 
   search(searchTerm) {
-    Spotify.search(searchTerm).then(results => {
-      this.setState({searchResults: results});
-    });
+    if (!searchTerm.length) {
+      console.log("No request made. No searchTerm.");
+      return;
+    } else {
+      Spotify.search(searchTerm).then(results => {
+        this.setState({searchResults: results});
+      });
+    }
   }
 
   addTrack(track) {
@@ -58,6 +63,7 @@ class App extends Component {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
+        <p className="subtitle">A Codecademy Project</p>
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
